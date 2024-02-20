@@ -2,10 +2,21 @@ import { useState } from 'react';
 import { useGetTotalScore } from './useGetTotalScore';
 import { useGetUpdateTotalScore } from './useGetUpdateTotalScore';
 
-export const DEFAULT_CHOICES = {
-	name: 'default',
-	img: '/assets/default.png',
-};
+export const DEFAULT_CHOICES = [
+	{
+		name: 'default',
+		img: '/assets/default.png',
+	},
+	{
+		name: 'default-left',
+		img: '/assets/defaultLeft.png',
+	},
+	{
+		name: 'default-right',
+		img: '/assets/rock.png',
+	},
+];
+
 export const CHOICES = [
 	{ name: 'rock', img: '/assets/rock.png' },
 	{ name: 'paper', img: '/assets/paper.png' },
@@ -13,8 +24,8 @@ export const CHOICES = [
 ];
 
 export const useGameLogic = () => {
-	const [playerAChoice, setPlayerAChoice] = useState(DEFAULT_CHOICES);
-	const [playerBChoice, setPlayerBChoice] = useState(DEFAULT_CHOICES);
+	const [playerAChoice, setPlayerAChoice] = useState(DEFAULT_CHOICES[0]);
+	const [playerBChoice, setPlayerBChoice] = useState(DEFAULT_CHOICES[0]);
 	const [gameResult, setGameResult] = useState('');
 	const { data } = useGetTotalScore();
 	const { updateTotalScore } = useGetUpdateTotalScore();

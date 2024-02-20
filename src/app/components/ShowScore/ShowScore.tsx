@@ -1,4 +1,4 @@
-import { useGetTotalScore } from '../hooks/useGetTotalScore';
+import { useGetTotalScore } from '../../hooks/useGetTotalScore';
 
 const ShowScore = () => {
 	const { data } = useGetTotalScore();

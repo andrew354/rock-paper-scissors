@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.animateObject {
+	animation: MoveUpDown 1s linear infinite;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 270px;
+	height: 200px;
+}
+
+@keyframes MoveUpDown {
+	0%,
+	100% {
+		bottom: 0;
+	}
+	50% {
+		bottom: 50px;
+	}
+}

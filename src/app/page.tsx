@@ -1,16 +1,16 @@
 'use client';
 import React, { useEffect } from 'react';
-import ShowScore from './components/ShowScore';
+import ShowScore from './components/ShowScore/ShowScore';
 import { useTimer } from './hooks/useTimer';
 import { useGameLogic } from './hooks/useGameLogic';
-import Title from './components/Title';
+import Title from './components/Title/Title';
 import { useGetTotalScore } from './hooks/useGetTotalScore';
-import PlayersSection from './components/PlayersSelections';
+import PlayersSection from './components/PlayersSelection/PlayersSelections';
 
-export type Choice = {
+export interface IChoice {
 	name: string;
 	img: string;
-};
+}
 
 const Home = () => {
 	const { getPlayerAScore, getPlayerBScore } = useGetTotalScore();

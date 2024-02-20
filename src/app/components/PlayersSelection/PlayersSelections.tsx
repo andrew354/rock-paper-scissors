@@ -1,16 +1,17 @@
 import React from 'react';
-import PlayerBox from './PlayerBox';
-import { CHOICES } from '../hooks/useGameLogic';
-import { Choice } from '../page';
+import PlayerBox from '../PlayerBox/PlayerBox';
+import { CHOICES, DEFAULT_CHOICES } from '../../hooks/useGameLogic';
+import { IChoice } from '../../page';
+import { Turret_Road } from 'next/font/google';
 
-type PlayersSectionProps = {
+interface IPlayersSectionProps {
 	runTimer: boolean;
 	timer: number;
-	playerAChoice: Choice;
-	playerBChoice: Choice;
+	playerAChoice: IChoice;
+	playerBChoice: IChoice;
 	getPlayerAScore: () => number;
 	getPlayerBScore: () => number;
-};
+}
 
 const PlayersSection = ({
 	runTimer,
@@ -19,25 +20,30 @@ const PlayersSection = ({
 	playerBChoice,
 	getPlayerAScore,
 	getPlayerBScore,
-}: PlayersSectionProps) => {
+}: IPlayersSectionProps) => {
+	console.log('🚀 ~ playerBChoice:', playerBChoice);
+	console.log('🚀 ~ playerAChoice:', playerAChoice);
 	return (
 		<div className="flex md:gap-20 items-center">
 			<div>
 				<PlayerBox
+					animate={runTimer ? true : false}
 					image={runTimer ? CHOICES[0].img : playerAChoice.img}
+					choice={runTimer ? CHOICES[0].name : playerAChoice.name}
 					playerColor="blue"
 					name="Player A"
-					choice={runTimer ? CHOICES[0].name : playerAChoice.name}
 					totalScore={getPlayerAScore()}
 				/>
 			</div>
 			<div className="text-center text-3xl md:text-7xl min-w-16">{timer}</div>
 			<div>
 				<PlayerBox
-					image={runTimer ? CHOICES[0].img : playerBChoice.img}
+					rotate
+					animate={runTimer ? true : false}
+					image={runTimer ? DEFAULT_CHOICES[1].img : playerBChoice.img}
+					choice={runTimer ? DEFAULT_CHOICES[1].name : playerBChoice.name}
 					playerColor="red"
 					name="Player B"
-					choice={runTimer ? CHOICES[0].name : playerBChoice.name}
 					totalScore={getPlayerBScore()}
 				/>
 			</div>

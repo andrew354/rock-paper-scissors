@@ -1,20 +1,31 @@
 import Image from 'next/image';
 
-type PlayerBoxProps = {
+interface IPlayerBoxProps {
 	name: string;
 	choice: string;
 	image: string;
 	playerColor: string;
 	totalScore: number;
-};
+	animate: boolean;
+	rotate?: boolean;
+}
 
-const PlayerBox = ({ name, choice, image, totalScore }: PlayerBoxProps) => {
+const PlayerBox = ({
+	name,
+	choice,
+	image,
+	totalScore,
+	animate,
+	rotate,
+}: IPlayerBoxProps) => {
 	return (
 		<>
 			<p className="text-center font-semibold text-base my-3">{name}</p>
-			<div className="h-[200px] bg-red-400 flex items-center">
+			<div className="rounded-md h-[200px] w-[270px] relative bg-red-400 flex items-center">
 				<Image
-					className="bg-red-400 max-h-[100px] object-contain"
+					className={`${
+						animate ? 'animateObject w-full h-full' : ''
+					}  bg-red-400 max-h-[100px] object-contain`}
 					width={270}
 					height={200}
 					src={image}
