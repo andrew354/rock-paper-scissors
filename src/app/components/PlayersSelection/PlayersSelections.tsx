@@ -2,7 +2,6 @@ import React from 'react';
 import PlayerBox from '../PlayerBox/PlayerBox';
 import { CHOICES, DEFAULT_CHOICES } from '../../hooks/useGameLogic';
 import { IChoice } from '../../page';
-import { Turret_Road } from 'next/font/google';
 
 interface IPlayersSectionProps {
 	runTimer: boolean;
