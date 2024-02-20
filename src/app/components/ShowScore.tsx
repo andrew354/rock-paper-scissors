@@ -3,12 +3,13 @@ import { useGetTotalScore } from '../hooks/useGetTotalScore';
 const ShowScore = () => {
 	const { data } = useGetTotalScore();
 	return (
-		<div>
-			<p>playerAScore: {data?.getTotalScore.playerAScore.toString()}</p>
-			<p>playerBScore: {data?.getTotalScore.playerBScore.toString()}</p>
-			<p>tieScore: {data?.getTotalScore.tieScore.toString()}</p>
-			<p>numberGamePlayed: {data?.getTotalScore.numberGamePlayed.toString()}</p>
-			<p>maxGamesNumber: {data?.getTotalScore.maxGamesNumber.toString()}</p>
+		<div className="flex justify-center flex-col items-center md:my-14 my-5">
+			<p>
+				Total games:{' '}
+				{`${data?.getTotalScore.numberGamePlayed.toString()}
+				 /	${data?.getTotalScore.maxGamesNumber.toString()}`}
+			</p>
+			<p>Total tie score: {data?.getTotalScore.tieScore.toString()}</p>
 		</div>
 	);
 };

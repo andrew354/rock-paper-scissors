@@ -2,21 +2,26 @@ import { useState } from 'react';
 import { useGetTotalScore } from './useGetTotalScore';
 import { useGetUpdateTotalScore } from './useGetUpdateTotalScore';
 
+export const DEFAULT_CHOICES = {
+	name: 'default',
+	img: '/assets/default.png',
+};
 export const CHOICES = [
-	{ name: 'rock', img: '/assets/rock.jpeg' },
+	{ name: 'rock', img: '/assets/rock.png' },
 	{ name: 'paper', img: '/assets/paper.png' },
-	{ name: 'scissor', img: '/assets/scissors.jpeg' },
+	{ name: 'scissors', img: '/assets/scissors.png' },
 ];
 
 export const useGameLogic = () => {
-	const [playerAChoice, setPlayerAChoice] = useState(CHOICES[0]);
-	const [playerBChoice, setPlayerBChoice] = useState(CHOICES[0]);
+	const [playerAChoice, setPlayerAChoice] = useState(DEFAULT_CHOICES);
+	const [playerBChoice, setPlayerBChoice] = useState(DEFAULT_CHOICES);
 	const [gameResult, setGameResult] = useState('');
 	const { data } = useGetTotalScore();
 	const { updateTotalScore } = useGetUpdateTotalScore();
 
-	const getPlayerBChoice = () => {
-		const randomNumber = Math.floor(Math.random() * 3);
+	const getPlayerChoices = () => {
+		setPlayerAChoice(CHOICES[1]);
+		const randomNumber = Math.floor(Math.random() * CHOICES.length);
 		setPlayerBChoice(CHOICES[randomNumber]);
 	};
 
@@ -37,7 +42,7 @@ export const useGameLogic = () => {
 				},
 			});
 			setGameResult('Player A Wins!');
-		} else if (playerBChoice?.name === 'scissor') {
+		} else if (playerBChoice?.name === 'scissors') {
 			updateTotalScore({
 				variables: {
 					playerBScore: data.getTotalScore.playerBScore + 1,
@@ -54,7 +59,7 @@ export const useGameLogic = () => {
 		gameResult,
 		setGameResult,
 		setPlayerAChoice,
-		getPlayerBChoice,
+		getPlayerChoices,
 		playGame,
 	};
 };
